@@ -5,7 +5,7 @@ import { Mail, MapPin, Phone, Send } from "lucide-react";
 
 const contactDetails = [
   { icon: Mail, label: "Email us", value: "hello@codnext.dev", href: "mailto:hello@codnext.dev" },
-  { icon: Phone, label: "Call us", value: "+92 300 1234567", href: "tel:+923001234567" },
+  { icon: Phone, label: "Call us", value: "+92 3373123169", href: "tel:+923001234567" },
   { icon: MapPin, label: "Visit us", value: "Karachi, Pakistan" },
 ];
 

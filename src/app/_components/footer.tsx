@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Globe, Mail, Phone, MapPin } from "lucide-react";
 import { FaGithub, FaTwitter } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa6";
@@ -50,12 +51,15 @@ export default function Footer() {
           <div>
             <Link
               href="/"
-              className="flex items-center gap-2.5 text-2xl font-bold tracking-[-1.5px] text-white"
+              className="flex items-center"
             >
-              <span className="bg-linear-to-r from-[#9a25ff] via-[#3b74ff] to-[#00c4ff] bg-clip-text font-mono text-[24px] leading-none tracking-[-5px] text-transparent">
-                {"</>"}
-              </span>
-              CodNext
+              <Image
+                src="/images/logo/codnext-logo.png"
+                alt="CodNext"
+                width={185}
+                height={52}
+                className="h-auto w-36"
+              />
             </Link>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/50">
               Building innovative software solutions that drive growth and

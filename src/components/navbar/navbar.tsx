@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 
@@ -26,12 +27,16 @@ export default function Navbar() {
         <Link
           href="#home"
           onClick={closeMenu}
-          className="flex shrink-0 items-center gap-2.5 text-[28px] font-bold tracking-[-1.5px] text-white sm:text-[31px]"
+          className="flex shrink-0 items-center"
         >
-          <span className="bg-gradient-to-r from-[#9a25ff] via-[#3b74ff] to-[#00c4ff] bg-clip-text font-mono text-[30px] leading-none tracking-[-5px] text-transparent sm:text-[34px]">
-            {"</>"}
-          </span>
-          CodNext
+          <Image
+            src="/images/logo/codnext-logo.png"
+            alt="CodNext"
+            width={185}
+            height={52}
+            priority
+            className="h-auto w-36 sm:w-44"
+          />
         </Link>
 
         {/* Links */}
