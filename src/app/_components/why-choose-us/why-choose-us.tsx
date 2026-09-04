@@ -1,5 +1,7 @@
+// app/_components/why-choose-us/why-choose-us.tsx
 import Link from "next/link";
 import { Rocket, Users, ShieldCheck, Headset } from "lucide-react";
+import WhyChooseUsAnimation from "./_components/why-choose-us-animation";
 
 const stats = [
   { icon: Rocket, value: "10+", label: "Projects Delivered", gradientId: "grad-1" },
@@ -15,9 +17,16 @@ const gradients = [
   { id: "grad-4", from: "#2fb8ff", to: "#1e90ff" },
 ];
 
+// Splits "10+" -> { number: 10, suffix: "+" }, "24/7" -> { number: 24, suffix: "/7" }
+function splitValue(value: string) {
+  const match = value.match(/^(\d+)(.*)$/);
+  if (!match) return { number: 0, suffix: value };
+  return { number: Number(match[1]), suffix: match[2] };
+}
+
 export default function WhyChooseUs() {
   return (
-    <section id="why-codnext" className="relative scroll-mt-22 mx-auto max-w-700 w-full overflow-hidden px-5 py-5 sm:px-8 lg:px-13">
+    <WhyChooseUsAnimation>
       {/* Dot-grid background accent */}
       <div
         className="pointer-events-none absolute inset-0 opacity-20"
@@ -41,7 +50,7 @@ export default function WhyChooseUs() {
 
       <div className="relative grid gap-12 lg:grid-cols-[minmax(0,460px)_1fr] lg:items-center lg:gap-12">
         {/* Left: copy */}
-        <div>
+        <div className="wcu-copy">
           <span className="text-xs font-semibold tracking-wide text-[#8a4dff]">
             Why choose CodNext
           </span>
@@ -79,25 +88,32 @@ export default function WhyChooseUs() {
         </div>
 
         {/* Right: stat cards */}
-        <div className="grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-4">
-          {stats.map(({ icon: Icon, value, label, gradientId }) => (
-            <div
-              key={label}
-              className="flex flex-col rounded-2xl border border-white/10 bg-white/2 p-6"
-            >
-              <Icon
-                className="h-12 w-12"
-                stroke={`url(#${gradientId})`}
-                style={{ filter: "drop-shadow(0 0 8px rgba(163,56,255,0.4))" }}
-              />
-              <span className="mt-6 text-3xl font-bold text-white sm:text-4xl">
-                {value}
-              </span>
-              <span className="mt-4 text-sm text-white/55">{label}</span>
-            </div>
-          ))}
+        <div className="wcu-stats grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-4">
+          {stats.map(({ icon: Icon, value, label, gradientId }) => {
+            const { number, suffix } = splitValue(value);
+            return (
+              <div
+                key={label}
+                className="wcu-card flex flex-col rounded-2xl border border-white/10 bg-white/2 p-6"
+              >
+                <Icon
+                  className="h-12 w-12"
+                  stroke={`url(#${gradientId})`}
+                  style={{ filter: "drop-shadow(0 0 8px rgba(163,56,255,0.4))" }}
+                />
+                <span
+                  className="wcu-value mt-6 text-3xl font-bold text-white sm:text-4xl"
+                  data-target={number}
+                  data-suffix={suffix}
+                >
+                  0{suffix}
+                </span>
+                <span className="mt-4 text-sm text-white/55">{label}</span>
+              </div>
+            );
+          })}
         </div>
       </div>
-    </section>
+    </WhyChooseUsAnimation>
   );
 }

@@ -1,8 +1,10 @@
+// app/_components/footer/footer.tsx
 import Link from "next/link";
 import Image from "next/image";
 import { Globe, Mail, Phone, MapPin } from "lucide-react";
 import { FaGithub, FaTwitter } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa6";
+import FooterAnimation from "./_components/footer-animation";
 
 const socials = [
   { icon: FaLinkedin, href: "https://linkedin.com", label: "LinkedIn" },
@@ -44,15 +46,12 @@ const columns = [
 
 export default function Footer() {
   return (
-    <footer className="border-t border-white/10">
+    <FooterAnimation>
       <div className="mx-auto max-w-700 px-5 py-5 sm:px-8 lg:px-13">
         <div className="grid gap-12 lg:grid-cols-[280px_1fr]">
           {/* Brand */}
-          <div>
-            <Link
-              href="/"
-              className="flex items-center"
-            >
+          <div className="footer-brand">
+            <Link href="/" className="flex items-center">
               <Image
                 src="/images/logo/codnext-logo.png"
                 alt="CodNext"
@@ -72,7 +71,7 @@ export default function Footer() {
                   key={label}
                   href={href}
                   aria-label={label}
-                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/15 text-white/60 transition-colors hover:border-[#813dff]/40 hover:text-white"
+                  className="footer-social flex h-9 w-9 items-center justify-center rounded-lg border border-white/15 text-white/60 transition-colors hover:border-[#813dff]/40 hover:text-white"
                 >
                   <Icon className="h-4 w-4" />
                 </Link>
@@ -83,11 +82,11 @@ export default function Footer() {
           {/* Link columns + contact */}
           <div className="grid grid-cols-2 gap-8 sm:grid-cols-4">
             {columns.map(({ title, links }) => (
-              <div key={title}>
+              <div key={title} className="footer-column">
                 <h3 className="text-sm font-semibold text-white">{title}</h3>
                 <ul className="mt-4 flex flex-col gap-3">
                   {links.map(({ label, href }) => (
-                    <li key={label}>
+                    <li key={label} className="footer-link">
                       <Link
                         href={href}
                         className="text-sm text-white/50 transition-colors hover:text-white"
@@ -100,10 +99,10 @@ export default function Footer() {
               </div>
             ))}
 
-            <div className="col-span-2 sm:col-span-1">
+            <div className="footer-column col-span-2 sm:col-span-1">
               <h3 className="text-sm font-semibold text-white">Let&apos;s Connect</h3>
               <ul className="mt-4 flex flex-col gap-3">
-                <li>
+                <li className="footer-link">
                   <a
                     href="mailto:hello@codnext.dev"
                     className="flex items-start gap-2.5 text-sm text-white/50 transition-colors hover:text-white"
@@ -112,7 +111,7 @@ export default function Footer() {
                     hello@codnext.dev
                   </a>
                 </li>
-                <li>
+                <li className="footer-link">
                   <a
                     href="tel:+923001234567"
                     className="flex items-start gap-2.5 text-sm text-white/50 transition-colors hover:text-white"
@@ -121,7 +120,7 @@ export default function Footer() {
                     +92 300 1234567
                   </a>
                 </li>
-                <li className="flex items-start gap-2.5 text-sm text-white/50">
+                <li className="footer-link flex items-start gap-2.5 text-sm text-white/50">
                   <MapPin className="mt-0.5 h-4 w-4 shrink-0" />
                   Karachi, Pakistan
                 </li>
@@ -131,13 +130,13 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-14 flex flex-col items-center gap-3 border-t border-white/10 pt-6 text-xs text-white/40 sm:flex-row sm:justify-between">
+        <div className="footer-bottom mt-14 flex flex-col items-center gap-3 border-t border-white/10 pt-6 text-xs text-white/40 sm:flex-row sm:justify-between">
           <p>© 2026 CodNext. All rights reserved.</p>
           <p className="flex items-center gap-1.5">
             Made with <span className="text-[#ff5c5c]">♥</span> by CodNext Team
           </p>
         </div>
       </div>
-    </footer>
+    </FooterAnimation>
   );
 }

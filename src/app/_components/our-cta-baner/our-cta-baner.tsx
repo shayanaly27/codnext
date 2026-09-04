@@ -1,10 +1,12 @@
+// app/_components/cta-banner/cta-banner.tsx
 import Link from "next/link";
 import { Send, ArrowUpRight } from "lucide-react";
+import CtaBannerAnimation from "./_components/cta-banner-animation";
 
 export default function CtaBanner() {
   return (
-    <section id="contact" className="scroll-mt-22 mx-auto max-w-700 w-full px-5 py-16 sm:px-8 lg:px-13">
-      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-[#1a3fe0] to-[#9b00ed] px-6 py-10 sm:px-10 lg:px-14">
+    <CtaBannerAnimation>
+      <div className="cta-banner relative overflow-hidden rounded-3xl bg-gradient-to-r from-[#1a3fe0] to-[#9b00ed] px-6 py-10 sm:px-10 lg:px-14">
         {/* Decorative network graphic, right side */}
         <svg
           aria-hidden="true"
@@ -29,10 +31,10 @@ export default function CtaBanner() {
 
         <div className="relative flex flex-col gap-8 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-start gap-5 sm:items-center">
-            <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-white/15">
+            <div className="cta-icon flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-white/15">
               <Send className="h-6 w-6 text-white" />
             </div>
-            <div>
+            <div className="cta-text">
               <h2 className="text-xl font-bold text-white sm:text-2xl">
                 Have a Project in Mind?
               </h2>
@@ -45,13 +47,13 @@ export default function CtaBanner() {
 
           <Link
             href="/contact"
-            className="flex h-12 w-fit shrink-0 items-center gap-2 rounded-lg bg-[#0a0d16] px-6 text-sm font-semibold text-white transition-transform hover:scale-[1.02]"
+            className="cta-button flex h-12 w-fit shrink-0 items-center gap-2 rounded-lg bg-[#0a0d16] px-6 text-sm font-semibold text-white transition-transform hover:scale-[1.02]"
           >
             Let&apos;s Talk
             <ArrowUpRight className="h-4 w-4" />
           </Link>
         </div>
       </div>
-    </section>
+    </CtaBannerAnimation>
   );
 }

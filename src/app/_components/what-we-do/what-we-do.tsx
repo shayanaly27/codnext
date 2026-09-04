@@ -1,5 +1,7 @@
+// app/_components/what-we-do/what-we-do.tsx
 import Link from "next/link";
 import { Code2, Smartphone, Cloud, MousePointer2, Headphones, ArrowRight } from "lucide-react";
+import WhatWeDoAnimation from "./_components/what-we-do-animation";
 
 const services = [
   {
@@ -26,8 +28,6 @@ const services = [
     description: "Beautiful, intuitive and user-centered designs that turn ideas into impact.",
     href: "/services/ui-ux",
   },
-
-
   {
     icon: Headphones,
     title: "Maintenance & Support",
@@ -38,7 +38,7 @@ const services = [
 
 export default function WhatWeDo() {
   return (
-    <section id="services" className="relative scroll-mt-22 mx-auto max-w-700 overflow-hidden px-5 py-20 sm:px-8 lg:px-13">
+    <WhatWeDoAnimation>
       {/* Dot-grid background accent, top right */}
       <div
         className="pointer-events-none absolute -top-10 right-0 h-72 w-72 opacity-30"
@@ -59,26 +59,26 @@ export default function WhatWeDo() {
       </svg>
 
       <div className="relative">
-        <span className="text-xs font-semibold tracking-wide text-[#8a4dff]">
+        <span className="wwd-eyebrow inline-block text-xs font-semibold tracking-wide text-[#8a4dff]">
           What we do
         </span>
-        <h2 className="mt-3 text-[32px] font-bold text-white sm:text-[38px]">
+        <h2 className="wwd-heading mt-3 text-[32px] font-bold text-white sm:text-[38px]">
           End-to-End Digital Solutions
         </h2>
-        <p className="mt-4 max-w-md text-[15px] leading-relaxed text-white/55">
+        <p className="wwd-subcopy mt-4 max-w-md text-[15px] leading-relaxed text-white/55">
           We design, develop and deliver digital products that help businesses
           scale and stand out.
         </p>
       </div>
 
-      <div className="relative mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+      <div className="wwd-grid relative mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
         {services.map(({ icon: Icon, title, description, href }) => (
           <div
             key={title}
-            className="group flex flex-col rounded-2xl border border-white/10 bg-white/[0.02] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#813dff]/40 hover:bg-white/[0.04] hover:shadow-[0_20px_40px_-15px_rgba(163,56,255,0.25)]"
+            className="wwd-card group flex flex-col rounded-2xl border border-white/10 bg-white/[0.02] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#813dff]/40 hover:bg-white/[0.04] hover:shadow-[0_20px_40px_-15px_rgba(163,56,255,0.25)]"
           >
             <div className="relative flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/[0.03]">
-              <div className="absolute inset-0 rounded-xl bg-[#813dff]/0 blur-lg transition-colors duration-300 group-hover:bg-[#813dff]/25" />
+              <div className="wwd-icon-glow absolute inset-0 rounded-xl bg-[#813dff] opacity-0 blur-lg transition-colors duration-300 group-hover:opacity-25" />
               <Icon
                 className="relative h-6 w-6"
                 stroke="url(#icon-gradient)"
@@ -101,6 +101,6 @@ export default function WhatWeDo() {
           </div>
         ))}
       </div>
-    </section>
+    </WhatWeDoAnimation>
   );
 }

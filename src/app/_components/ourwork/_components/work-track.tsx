@@ -1,3 +1,4 @@
+// app/_components/our-work/work-track.tsx
 "use client";
 
 import { useEffect, useRef, useState } from "react";
@@ -10,38 +11,15 @@ const categoryStyles: Record<string, string> = {
   "Mobile App": "bg-[#a338ff]/15 text-[#c085ff] border-[#a338ff]/30",
 };
 
-const projects = [
-  {
-    title: "Analytics Dashboard",
-    category: "Web Application",
-    description: "Data analytics platform for real-time business insights.",
-    image: "/images/work/01_analytics_dashboard.png",
-    href: "/work/analytics-dashboard",
-  },
-  {
-    title: "FitTrack Mobile App",
-    category: "Mobile App",
-    description: "Health & fitness tracking application with analytics.",
-    image: "/images/work/02_fittrack_mobile_app.png",
-    href: "/work/fittrack",
-  },
-  {
-    title: "NextShop E-Commerce",
-    category: "Web Application",
-    description: "Modern e-commerce platform with admin panel.",
-    image: "/images/work/03_nextshop_ecommerce.png",
-    href: "/work/nextshop",
-  },
-  {
-    title: "FinSmart Dashboard",
-    category: "Web Application",
-    description: "Financial management & analytics dashboard.",
-    image: "/images/work/04_finsmart_dashboard.png",
-    href: "/work/finsmart",
-  },
-];
+export type Project = {
+  title: string;
+  category: string;
+  description: string;
+  image: string;
+  href: string;
+};
 
-export default function OurWork() {
+export default function WorkTrack({ projects }: { projects: Project[] }) {
   const trackRef = useRef<HTMLDivElement>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -76,29 +54,10 @@ export default function OurWork() {
   };
 
   return (
-    <section id="work" className="scroll-mt-22 mx-auto w-full max-w-700 overflow-hidden px-5 py-10 sm:px-8 lg:px-10">
-      <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-        <div>
-          <span className="text-xs font-semibold tracking-wide text-[#8a4dff]">
-            Our work
-          </span>
-          <h2 className="mt-3 text-[32px] font-bold text-white sm:text-[38px]">
-            Projects We&apos;re Proud Of
-          </h2>
-        </div>
-
-        <Link
-          href="/work"
-          className="inline-flex h-11 w-fit items-center gap-2 rounded-lg border border-white/20 px-5 text-sm font-semibold text-white transition-colors hover:border-[#a338ff]/50"
-        >
-          View All Projects
-          <ArrowUpRight className="h-4 w-4" />
-        </Link>
-      </div>
-
+    <>
       <div
         ref={trackRef}
-        className="no-scrollbar mt-10 flex min-w-0 snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth pb-2"
+        className="ow-track no-scrollbar mt-10 flex min-w-0 snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth pb-2"
       >
         {projects.map((project, i) => (
           <div
@@ -106,7 +65,7 @@ export default function OurWork() {
             ref={(el) => {
               cardRefs.current[i] = el;
             }}
-            className="w-[85%] shrink-0 snap-start sm:w-[60%] lg:w-[calc((100%-40px)/3)] xl:w-[calc((100%-60px)/4)]"
+            className="ow-card w-[85%] shrink-0 snap-start sm:w-[60%] lg:w-[calc((100%-40px)/3)] xl:w-[calc((100%-60px)/4)]"
           >
             <Link
               href={project.href}
@@ -146,7 +105,7 @@ export default function OurWork() {
         ))}
       </div>
 
-      <div className="mt-8 flex items-center justify-center gap-2">
+      <div className="ow-dots mt-8 flex items-center justify-center gap-2">
         {projects.map((project, i) => (
           <button
             key={project.title}
@@ -161,6 +120,6 @@ export default function OurWork() {
           />
         ))}
       </div>
-    </section>
+    </>
   );
 }
