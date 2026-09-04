@@ -4,7 +4,7 @@ import { FormEvent, useState } from "react";
 import { Mail, MapPin, Phone, Send } from "lucide-react";
 
 const contactDetails = [
-  { icon: Mail, label: "Email us", value: "hello@codnext.dev", href: "mailto:hello@codnext.dev" },
+  { icon: Mail, label: "Email us", value: "codnext2719@gmail.com", href: "mailto:codnext2719@gmail.com" },
   { icon: Phone, label: "Call us", value: "+92 3373123169", href: "tel:+923001234567" },
   { icon: MapPin, label: "Visit us", value: "Karachi, Pakistan" },
 ];
